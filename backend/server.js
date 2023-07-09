@@ -1,7 +1,12 @@
 const express = require("express");
 const dbConnect = require("./config/dbConnect");
+const User = require("./models/User");
+const usersRoute = require("./routes/usersRoute");
 const app = express();
 
+
+// passing body data
+app.use(express.json());
 
 
 
@@ -9,31 +14,11 @@ const app = express();
 dbConnect()
 
 
+
+
 // Routes
-// USERS Register
-app.post("/api/users/register" , (req,res) =>{
-    res.send("Hearing Users POst");
-})
+ app.use("/api/users" , usersRoute)
 
-// get users
-app.get("/api/users" , (req,res) =>{
-    res.send("Hearing Users list");
-})
-
-// Login
-app.post("/api/users/login" , (req,res) =>{
-    res.send("Hearing Login POst");
-})
-
-// Updates User
-app.put("/api/users/update" , (req,res) =>{
-    res.send("Hearing Update POst");
-})
-
-// Delete Users
-app.delete("/api/users/delete/:id" , (req,res) =>{
-    res.send("Hearing Delete POst");
-})
 
 
 
