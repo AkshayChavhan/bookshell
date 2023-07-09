@@ -3,7 +3,6 @@ const User = require("../models/User");
 const usersRoute = express.Router();
 
 
-
 // USERS Register
 usersRoute.post("/register" , async (req,res) =>{
     try {
