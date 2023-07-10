@@ -1,9 +1,14 @@
 const express = require("express");
 const dbConnect = require("./config/dbConnect");
-const User = require("./models/User");
+const dotenv = require("dotenv");
 const usersRoute = require("./routes/usersRoute");
 const app = express();
 const error = require("../backend/errorMiddlewareHandler/errorMiddlewareHandler");
+
+
+
+// 
+dotenv.config();
 
 
 // passing body data
