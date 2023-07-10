@@ -10,7 +10,8 @@ const UserSchema = new mongoose.Schema({
     },
     email : {
         type : String ,
-        required : true
+        required : true ,
+        unique : true
     },
     password : {
         type : String ,
@@ -25,6 +26,16 @@ UserSchema.pre("save", async function(next) {
     this.password = await bcrypt.hash(this.password , salt);
     next()
 })
+
+
+
+
+// verified password
+
+UserSchema.methods.isPasswordMatch = async function (enteredPassword){
+    return await bcrypt.compare(enteredPassword , this.password );
+} 
+
 
 
 const User = mongoose.model("User" , UserSchema);
