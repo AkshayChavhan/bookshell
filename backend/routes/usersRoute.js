@@ -26,13 +26,25 @@ usersRoute.get("/" , async (req,res) =>{
 })
 
 // Login
-usersRoute.post("/login" , async (req,res) =>{
-    try {
-        console.log("login");
-    } catch (error) {
-        console.log(error);
+usersRoute.post("/login" , asynHandler( async (req,res) =>{
+    const { email ,password } = req.body ;
+
+    const user = await User.findOne({ email });
+    if(user) {
+        // set status code
+        res.status(200);
+
+        res.json({
+            _id : user._id , 
+            name : user.name ,
+            password : user.password ,
+            email : user.email 
+        });
+    }else{
+        res.status(401);
+        throw new Error("Invalid credentials");
     }
-})
+}))
 
 // Updates User
 usersRoute.put("/update" , async (req,res) =>{
