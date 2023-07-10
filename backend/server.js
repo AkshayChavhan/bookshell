@@ -3,6 +3,7 @@ const dbConnect = require("./config/dbConnect");
 const User = require("./models/User");
 const usersRoute = require("./routes/usersRoute");
 const app = express();
+const error = require("../backend/errorMiddlewareHandler/errorMiddlewareHandler");
 
 
 // passing body data
@@ -20,8 +21,8 @@ dbConnect()
  app.use("/api/users" , usersRoute)
 
 
-
-
+// Error middleware
+app.use(error.errorMiddlewareHandler);
 
 
 // Server
