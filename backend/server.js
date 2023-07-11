@@ -4,6 +4,7 @@ const dotenv = require("dotenv");
 const usersRoute = require("./routes/usersRoute");
 const app = express();
 const error = require("../backend/errorMiddlewareHandler/errorMiddlewareHandler");
+const bookRouter = require("./routes/bookRoutes");
 
 
 
@@ -23,7 +24,11 @@ dbConnect()
 
 
 // Routes
- app.use("/api/users" , usersRoute)
+    // users
+app.use("/api/users" , usersRoute)
+    
+    // book
+app.use("/api/books" , bookRouter);
 
 
 // Error middleware
